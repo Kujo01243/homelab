@@ -1,0 +1,13 @@
+services:
+  overseerr:
+    image: lscr.io/linuxserver/overseerr
+    container_name: overserr
+    volumes:
+      - ${data_path}:/config
+    restart: always
+    networks:
+      - usenet
+
+networks:
+  usenet:
+    external: true

@@ -1,0 +1,16 @@
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:1.23.15 
+    container_name: kuma
+    volumes:
+      - ${data_path}:/app/data
+    ports:
+      - ${web_port}:3001
+    restart: always
+    networks:
+      dmz:
+        ipv4_address: ${ip_address}
+
+networks:
+  dmz:
+    external: true

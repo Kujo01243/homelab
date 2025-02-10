@@ -1,0 +1,11 @@
+services:
+    speedtest:
+        restart: unless-stopped
+        container_name: speedtest
+        image: openspeedtest/latest
+        networks:
+         - speedtest
+
+networks:
+  speedtest:
+    external: true

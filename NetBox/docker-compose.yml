@@ -1,0 +1,153 @@
+services:
+  netbox: &netbox
+    restart: unless-stopped       #because crash after every system reboot
+    image: docker.io/${netbox_version}
+    depends_on:
+      - postgres
+      - redis
+      - redis-cache
+    environment:
+     - CORS_ORIGIN_ALLOW_ALL=${port_CORS_ORIGIN_ALLOW_ALL}
+     - DB_HOST=${port_DB_HOST}
+     - DB_NAME=${port_DB_NAME}
+     - DB_PASSWORD=${port_DB_PASSWORD}
+     - DB_USER=${port_DB_USER}
+     - GRAPHQL_ENABLED=${port_GRAPHQL_ENABLED}
+     - HOUSEKEEPING_INTERVAL=${port_HOUSEKEEPING_INTERVAL}
+     - MEDIA_ROOT=${port_MEDIA_ROOT}
+     - METRICS_ENABLED=${port_METRICS_ENABLED}
+     - REDIS_CACHE_DATABASE=${port_REDIS_CACHE_DATABASE}
+     - REDIS_CACHE_HOST=${port_REDIS_CACHE_HOST}
+     - REDIS_CACHE_INSECURE_SKIP_TLS_VERIFY=${port_REDIS_CACHE_INSECURE_SKIP_TLS_VERIFY}
+     - REDIS_CACHE_PASSWORD=${port_REDIS_CACHE_PASSWORD}
+     - REDIS_CACHE_SSL=${port_REDIS_CACHE_SSL}
+     - REDIS_DATABASE=${port_REDIS_DATABASE}
+     - REDIS_HOST=${port_REDIS_HOST}
+     - REDIS_INSECURE_SKIP_TLS_VERIFY=${port_REDIS_INSECURE_SKIP_TLS_VERIFY}
+     - REDIS_PASSWORD=${port_REDIS_PASSWORD}
+     - REDIS_SSL=${port_REDIS_SSL}
+     - RELEASE_CHECK_URL=${port_RELEASE_CHECK_URL}
+     - SECRET_KEY=${port_SECRET_KEY}
+     - SKIP_SUPERUSER=${port_SKIP_SUPERUSER}
+     - WEBHOOKS_ENABLED=${port_WEBHOOKS_ENABLED}
+     - REMOTE_AUTH_ENABLED=${port_REMOTE_AUTH_ENABLED}
+     - REMOTE_AUTH_BACKEND=${port_}
+     - SOCIAL_AUTH_OIDC_ENDPOINT=${port_SOCIAL_AUTH_OIDC_ENDPOINT}
+     - SOCIAL_AUTH_OIDC_KEY=${port_SOCIAL_AUTH_OIDC_KEY}
+     - SOCIAL_AUTH_OIDC_SECRET=${port_SOCIAL_AUTH_OIDC_SECRET}
+     - SOCIAL_AUTH_OIDC_SCOPE=${port_SOCIAL_AUTH_OIDC_SCOPE}
+     - LOGOUT_REDIRECT_URL=${port_LOGOUT_REDIRECT_URL}
+    user: "unit:root"
+    healthcheck:
+      test: curl -f http://localhost:8080/login/ || exit 1
+      start_period: 90s
+      timeout: 10s
+      interval: 15s
+    volumes:
+      - /root/netbox/configuration:/etc/netbox/config:z,ro
+      - netbox-media-files:/opt/netbox/netbox/media:rw
+      - netbox-reports-files:/opt/netbox/netbox/reports:rw
+      - netbox-scripts-files:/opt/netbox/netbox/scripts:rw
+    networks:
+    - netbox
+
+  netbox-worker:
+    <<: *netbox
+    depends_on:
+      netbox:
+        condition: service_healthy
+    command:
+      - /opt/netbox/venv/bin/python
+      - /opt/netbox/netbox/manage.py
+      - rqworker
+    healthcheck:
+      test: ps -aux | grep -v grep | grep -q rqworker || exit 1
+      start_period: 20s
+      timeout: 10s
+      interval: 15s
+
+  netbox-housekeeping:
+    <<: *netbox
+    depends_on:
+      netbox:
+        condition: service_healthy
+    command:
+      - /opt/netbox/housekeeping.sh
+    healthcheck:
+      test: ps -aux | grep -v grep | grep -q housekeeping || exit 1
+      start_period: 20s
+      timeout: 10s
+      interval: 15s
+
+  # postgres
+  postgres:
+    restart: unless-stopped       #because crash after every system reboot
+    image: docker.io/postgres:16-alpine
+    healthcheck:
+      test: pg_isready -q -t 2 -d $$POSTGRES_DB -U $$POSTGRES_USER
+      start_period: 20s
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    volumes:
+      - netbox-postgres-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${port_PG_POSTGRES_DB}
+      - POSTGRES_PASSWORD=${port_PG_POSTGRES_PASSWORD}
+      - POSTGRES_USER=${port_PG_POSTGRES_USER}
+    networks:
+     - netbox
+
+  # redis
+  redis:
+    restart: unless-stopped       #because crash after every system reboot
+    image: docker.io/valkey/valkey:8.0-alpine
+    command:
+      - sh
+      - -c # this is to evaluate the $REDIS_PASSWORD from the env
+      - valkey-server --appendonly yes --requirepass $$REDIS_PASSWORD ## $$ because of docker-compose
+    healthcheck: &redis-healthcheck
+      test: '[ $$(valkey-cli --pass "$${REDIS_PASSWORD}" ping) = ''PONG'' ]'
+      start_period: 5s
+      timeout: 10s
+      interval: 1s
+      retries: 10
+    volumes:
+      - netbox-redis-data:/data
+    environment:
+      - REDIS_PASSWORD=${port_RED_REDIS_PASSWORD}
+    networks:
+     - netbox
+
+  redis-cache:
+    restart: unless-stopped       #because crash after every system reboot
+    image: docker.io/valkey/valkey:8.0-alpine
+    command:
+      - sh
+      - -c # this is to evaluate the $REDIS_PASSWORD from the env
+      - valkey-server --requirepass $$REDIS_PASSWORD ## $$ because of docker-compose
+    healthcheck: *redis-healthcheck
+    volumes:
+      - netbox-redis-cache-data:/data
+    environment:
+      - REDIS_PASSWORD=${port_REDC_REDIS_PASSOWORD}
+    networks:
+     - netbox
+
+volumes:
+  netbox-media-files:
+    driver: local
+  netbox-postgres-data:
+    driver: local
+  netbox-redis-cache-data:
+    driver: local
+  netbox-redis-data:
+    driver: local
+  netbox-reports-files:
+    driver: local
+  netbox-scripts-files:
+    driver: local
+
+networks:
+  netbox:
+    external: true

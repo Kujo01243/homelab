@@ -1,0 +1,18 @@
+services:
+  home-kuma:
+    image: louislam/uptime-kuma:beta 
+    container_name: home-kuma
+    restart: always
+    volumes:
+      - ${data_path}:/app/data
+    networks:
+      home-kuma:
+      lan:
+        ipv4_address: ${ip_address}
+
+
+networks:
+  home-kuma:
+    external: true
+  lan:
+    external: true

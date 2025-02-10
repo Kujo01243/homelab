@@ -1,0 +1,23 @@
+## Folgende Variablen müssen angepasst werden (alle Werte ohne anführungs und Schlusszeichen):
+gitlab_version
+smtp_enable=
+smtp_address=
+smtp_port=
+smtp_user_name=
+smtp_password=
+smtp_domain=
+smtp_authentication=
+smtp_enable_starttls_auto=
+smtp_tls=
+gitlab_email_from=
+gitlab_email_reply_to=
+gitlab-ce_version=
+hostname=
+external_url=
+provider_name=
+issuer_url=
+uid_field=
+oidc_client_id=
+oidc_client_secret=
+redirect_url=
+ssh_host=

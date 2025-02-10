@@ -1,0 +1,64 @@
+services:
+  gitlab:
+    image: "gitlab/${gitlab_version}"
+    container_name: gitlab
+    restart: always
+    hostname: '${hostname}'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url '${external_url}'
+        gitlab_rails['smtp_enable'] = ${smtp_enable}
+        gitlab_rails['gitlab_ssh_host'] = "${ssh_host}"
+        gitlab_rails['smtp_address'] = "${smtp_address}"
+        gitlab_rails['smtp_port'] = ${smtp_port}
+        gitlab_rails['smtp_user_name'] = "${smtp_user_name}"
+        gitlab_rails['smtp_password'] = "${smtp_password}"
+        gitlab_rails['smtp_domain'] = "${smtp_domain}"
+        gitlab_rails['smtp_authentication'] = "${smtp_authentication}"
+        gitlab_rails['smtp_enable_starttls_auto'] = ${smtp_enable_starttls_auto}
+        gitlab_rails['smtp_tls'] = "${smtp_tls}" 
+        gitlab_rails['gitlab_email_from']  = "${gitlab_email_from}"
+        gitlab_rails['gitlab_email_reply_to'] = "${gitlab_email_reply_to}"
+        gitlab_rails['omniauth_allow_single_sign_on'] = ['openid_connect']
+        gitlab_rails['omniauth_sync_email_from_provider'] = 'openid_connect'
+        gitlab_rails['omniauth_sync_profile_from_provider'] = ['openid_connect']
+        gitlab_rails['omniauth_sync_profile_attributes'] = ['email']
+        gitlab_rails['omniauth_block_auto_created_users'] = false
+        gitlab_rails['omniauth_auto_link_saml_user'] = true
+        gitlab_rails['omniauth_auto_link_user'] = ["openid_connect"]
+        gitlab_rails['omniauth_providers'] = [
+          {
+            name: "openid_connect", # do not change this parameter
+            label: "${provider_name}",
+            args: {
+              name: "openid_connect",
+              scope: ["openid","profile","email"],
+              response_type: "code",
+              issuer: "${issuer_url}",
+              discovery: true,
+              client_auth_method: "query",
+              uid_field: "${uid_field}",
+              send_scope_to_token_endpoint: "true",
+              pkce: true,
+              client_options: {
+                identifier: "${oidc_client_id}",
+                secret: "${oidc_client_secret}",
+                redirect_uri: "${redirect_url}"
+              }
+            }
+          }
+        ]
+    ports:
+      - '3002:443'
+      - '22:22'
+    volumes:
+      - '/root/gitlab/config:/etc/gitlab'
+      - '/root/gitlab/log:/var/log/gitlab'
+      - '/root/gitlab/data:/var/opt/gitlab'
+    shm_size: '256m'
+    networks:
+      - gitlab
+
+networks:
+  gitlab:
+    external: true

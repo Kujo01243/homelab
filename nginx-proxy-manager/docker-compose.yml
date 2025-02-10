@@ -1,0 +1,26 @@
+services:
+  proxy1:
+    image: docker.io/jc21/nginx-proxy-manager:latest
+    restart: unless-stopped
+    container_name: proxy1
+    volumes:
+      - ${data_path}:/data
+      - ${letsencrypt_path}:/etc/letsencrypt
+    networks:
+      speedtest:
+      netbox:
+      usenet:
+      lan:
+        ipv4_address: ${ip_address}
+
+networks:
+  usenet:
+    external: true
+  home-kuma:
+    external: true
+  lan:
+    external: true
+  netbox:
+    external: true
+  speedtest:
+    external: true
