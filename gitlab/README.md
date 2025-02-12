@@ -1,4 +1,4 @@
-## Folgende Variablen müssen angepasst werden (alle Werte ohne anführungs und Schlusszeichen):
+## The following variables need to be adjusted (all values without leading and trailing quotes):
 gitlab_version
 smtp_enable=
 smtp_address=
