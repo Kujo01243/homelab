@@ -15,7 +15,7 @@ services:
         gitlab_rails['smtp_password'] = "${smtp_password}"
         gitlab_rails['smtp_domain'] = "${smtp_domain}"
         gitlab_rails['smtp_authentication'] = "${smtp_authentication}"
-        gitlab_rails['smtp_enable_starttls_auto'] = ${smtp_enable_starttls_auto}
+        gitlab_rails['smtp_enable_starttls_auto'] = "${smtp_enable_starttls_auto}"
         gitlab_rails['smtp_tls'] = "${smtp_tls}" 
         gitlab_rails['gitlab_email_from']  = "${gitlab_email_from}"
         gitlab_rails['gitlab_email_reply_to'] = "${gitlab_email_reply_to}"
