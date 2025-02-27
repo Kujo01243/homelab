@@ -7,6 +7,7 @@ services:
       - redis
       - redis-cache
     environment:
+     - TIME_ZONE=${port_TIME_ZONE}
      - CORS_ORIGIN_ALLOW_ALL=${port_CORS_ORIGIN_ALLOW_ALL}
      - DB_HOST=${port_DB_HOST}
      - DB_NAME=${port_DB_NAME}
