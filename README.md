@@ -59,3 +59,7 @@ Prowlarr is an indexer manager for Usenet and BitTorrent.
 ### Speedtest
 A tool for checking internet speed.
 - [docker-compose.yml](speedtest/docker-compose.yml)
+
+### Templates
+Just the docker-compose template.
+- [docker-compose.yml](templates/docker-compose.yml)
