@@ -1,6 +1,6 @@
 services:
   uptime-kuma:
-    image: louislam/uptime-kuma:1.23.15 
+    image: louislam/uptime-kuma:1.23.16
     container_name: kuma
     volumes:
       - ${data_path}:/app/data
