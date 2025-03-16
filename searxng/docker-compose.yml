@@ -3,13 +3,14 @@ services:
         restart: unless-stopped
         container_name: searxng
         image: searxng/searxng
-        networks:
-         - searxng
         environment:
          - BASE_URL=${BASE_URL}
         volumes:
           - /root/searxng/etc/searxng:/etc/searxng
+        networks:
+          dmz:
+            ipv4_address: ${ip_address}
 
 networks:
-  searxng:
+  dmz:
     external: true
