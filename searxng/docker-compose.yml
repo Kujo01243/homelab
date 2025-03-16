@@ -1,0 +1,16 @@
+services:
+    searxng:
+        restart: unless-stopped
+        container_name: searxng
+        image: searxng/searxng
+        networks:
+         - searxng
+        environment:
+         - BASE_URL=${BASE_URL}
+         - INSTANCE_NAME=${INSTANCE_NAME}
+        volumes:
+          - /root/searxng/etc/searxng:/etc/searxng
+
+networks:
+  searxng:
+    external: true
