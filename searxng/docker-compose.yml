@@ -7,7 +7,6 @@ services:
          - searxng
         environment:
          - BASE_URL=${BASE_URL}
-         - INSTANCE_NAME=${INSTANCE_NAME}
         volumes:
           - /root/searxng/etc/searxng:/etc/searxng
 
