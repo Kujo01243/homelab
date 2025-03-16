@@ -10,6 +10,7 @@ services:
       speedtest:
       netbox:
       usenet:
+      searxng:
       lan:
         ipv4_address: ${ip_address}
 
@@ -23,4 +24,6 @@ networks:
   netbox:
     external: true
   speedtest:
+    external: true
+  searxng:
     external: true
