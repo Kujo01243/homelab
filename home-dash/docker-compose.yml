@@ -1,0 +1,11 @@
+services:
+    home-dash:
+        restart: unless-stopped
+        container_name: home-dash
+        image: b4bz/homer
+        networks:
+         - home-dash
+
+networks:
+  home-dash:
+    external: true
