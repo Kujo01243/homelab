@@ -5,6 +5,8 @@ services:
         image: b4bz/homer
         networks:
          - home-dash
+        volumes:
+          - /root/home-dash/www/assets:/www/assets
 
 networks:
   home-dash:
