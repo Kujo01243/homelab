@@ -1,0 +1,12 @@
+---
+- name: Add SSH public key to remote hosts
+  hosts: all
+  vars:
+    ansible_ssh_extra_args: '-o StrictHostKeyChecking=no'
+    ansible_ssh_private_key_file: /root/.ssh/id_rsa
+  tasks:
+    - name: Add SSH public key
+      authorized_key:
+        user: root
+        state: present
+        key: "{{ lookup('file', './id_rsa.pub') }}"
