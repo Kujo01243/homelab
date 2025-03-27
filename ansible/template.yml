@@ -1,5 +1,5 @@
 ---
-- name: Patch
+- name: <fill name>
   hosts: all
   remote_user: root
   vars:

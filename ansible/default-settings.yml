@@ -1,0 +1,75 @@
+---
+- name: Basic Configuration for Debian Machines
+  hosts: all
+  remote_user: root
+  vars:
+    ansible_ssh_extra_args: '-o StrictHostKeyChecking=no'
+    ansible_ssh_private_key_file: /root/.ssh/id_rsa
+  tasks:
+    - name: Update the package list
+      apt:
+        update_cache: yes
+
+    - name: Upgrade all packages
+      apt:
+        upgrade: dist
+
+    - name: Install git and curl
+      apt:
+        name:
+          - git
+          - curl
+        state: present
+
+    - name: Autoremove unused packages
+      apt:
+        autoremove: yes
+
+    - name: Enable root login via SSH with key
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PermitRootLogin'
+        line: 'PermitRootLogin prohibit-password'
+      notify: restart ssh
+
+    - name: Ensure the SSH service is running
+      service:
+        name: ssh
+        state: started
+        enabled: yes
+
+    - name: Create the directory for SSH keys if not present
+      file:
+        path: /root/.ssh
+        state: directory
+        mode: '0700'
+
+    - name: Add the user's public SSH key
+      authorized_key:
+        user: root
+        state: present
+        key: "{{ lookup('file', './id_rsa.pub') }}"
+
+    - name: Disable password authentication for SSH
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PasswordAuthentication'
+        line: 'PasswordAuthentication no'
+      notify: restart ssh
+
+    - name: Disable Postfix service
+      service:
+        name: postfix
+        state: stopped
+        enabled: no
+
+    - name: Uninstall Postfix
+      apt:
+        name: postfix
+        state: absent
+
+  handlers:
+    - name: restart ssh
+      service:
+        name: ssh
+        state: restarted
