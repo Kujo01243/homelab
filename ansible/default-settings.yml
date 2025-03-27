@@ -61,7 +61,7 @@
       command: systemctl is-active postfix
       register: postfix_status
       changed_when: false
-      failed_when: postfix_status.rc not in [0, 3]  # 0 means active, 3 means inactive
+      failed_when: postfix_status.rc not in [0, 3, 4]  # 0 means active, 3 means inactive, 4 means service not found
 
     - name: stop and disable Postfix service if it exists
       service:
