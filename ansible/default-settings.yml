@@ -57,7 +57,7 @@
         line: 'PasswordAuthentication no'
       notify: restart ssh
 
-    - name: Disable Postfix service
+    - name: stop and disable Postfix service
       service:
         name: postfix
         state: stopped
