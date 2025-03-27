@@ -60,7 +60,8 @@
     - name: Check if Postfix is installed
       command: systemctl is-active postfix
       register: postfix_status
-      ignore_errors: yes
+      changed_when: false
+      failed_when: postfix_status.rc not in [0, 3]  # 0 means active, 3 means inactive
 
     - name: stop and disable Postfix service if it exists
       service:
