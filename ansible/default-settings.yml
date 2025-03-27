@@ -57,16 +57,23 @@
         line: 'PasswordAuthentication no'
       notify: restart ssh
 
-    - name: stop and disable Postfix service
+    - name: Check if Postfix is installed
+      command: systemctl is-active postfix
+      register: postfix_status
+      ignore_errors: yes
+
+    - name: stop and disable Postfix service if it exists
       service:
         name: postfix
         state: stopped
         enabled: no
+      when: postfix_status.rc == 0
 
-    - name: Uninstall Postfix
+    - name: Uninstall Postfix if it exists
       apt:
         name: postfix
         state: absent
+      when: postfix_status.rc == 0
 
   handlers:
     - name: restart ssh
