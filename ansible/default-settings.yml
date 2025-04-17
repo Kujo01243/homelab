@@ -44,12 +44,6 @@
         state: directory
         mode: '0700'
 
-    - name: Add the user's public SSH key
-      authorized_key:
-        user: root
-        state: present
-        key: "{{ lookup('file', './id_rsa.pub') }}"
-
     - name: Disable password authentication for SSH
       lineinfile:
         path: /etc/ssh/sshd_config
