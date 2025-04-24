@@ -39,13 +39,6 @@
         state: started
         enabled: yes
 
-    - name: Disable password authentication for SSH
-      lineinfile:
-        path: /etc/ssh/sshd_config
-        regexp: '^PasswordAuthentication'
-        line: 'PasswordAuthentication no'
-      notify: restart ssh
-
     - name: Check if Postfix is installed
       command: systemctl is-active postfix
       register: postfix_status
