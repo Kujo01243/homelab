@@ -25,11 +25,12 @@
       apt:
         autoremove: yes
 
-    - name: Enable root login via SSH with key
+    - name: Ensure PermitRootLogin is set correctly
       lineinfile:
         path: /etc/ssh/sshd_config
         regexp: '^PermitRootLogin'
         line: 'PermitRootLogin prohibit-password'
+        state: present
       notify: restart ssh
 
     - name: Ensure the SSH service is running and enabled
