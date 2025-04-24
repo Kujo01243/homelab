@@ -32,17 +32,11 @@
         line: 'PermitRootLogin prohibit-password'
       notify: restart ssh
 
-    - name: Ensure the SSH service is running
+    - name: Ensure the SSH service is running and enabled
       service:
         name: ssh
         state: started
         enabled: yes
-
-    - name: Create the directory for SSH keys if not present
-      file:
-        path: /root/.ssh
-        state: directory
-        mode: '0700'
 
     - name: Disable password authentication for SSH
       lineinfile:
