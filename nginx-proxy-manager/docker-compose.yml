@@ -8,7 +8,6 @@ services:
       - ${letsencrypt_path}:/etc/letsencrypt
     networks:
       speedtest:
-      home-dash:
       netbox:
       usenet:
       lan:
@@ -24,6 +23,4 @@ networks:
   netbox:
     external: true
   speedtest:
-    external: true
-  home-dash:
     external: true
