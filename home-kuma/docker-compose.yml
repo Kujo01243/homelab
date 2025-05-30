@@ -5,6 +5,7 @@ services:
     restart: always
     volumes:
       - ${data_path}:/app/data
+      - ${ca_path}:/certs/KernelDump-Root-CA.crt
     networks:
       home-kuma:
       lan:
