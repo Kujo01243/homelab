@@ -5,11 +5,13 @@ services:
     restart: always
     volumes:
       - ${data_path}:/app/data
-      - ${ca_path}:/certs/KernelDump-Root-CA.crt
+      - ${ca_path}:/certs/root_ca.crt
     networks:
       home-kuma:
       lan:
         ipv4_address: ${ip_address}
+    environment:
+      - NODE_EXTRA_CA_CERTS=/certs/root_ca.crt
 
 
 networks:
