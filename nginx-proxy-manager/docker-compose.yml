@@ -24,3 +24,5 @@ networks:
     external: true
   speedtest:
     external: true
+  vaultwarden:
+    external: true
