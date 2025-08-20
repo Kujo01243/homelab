@@ -11,7 +11,7 @@ services:
       speedtest:
       netbox:
       usenet:
-      lan:
+      SDB1:
         ipv4_address: ${ip_address}
 
 networks:
@@ -19,7 +19,7 @@ networks:
     external: true
   home-kuma:
     external: true
-  lan:
+  SDB1:
     external: true
   netbox:
     external: true
