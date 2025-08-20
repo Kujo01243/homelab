@@ -8,7 +8,7 @@ services:
       - ${ca_path}:/certs/root_ca.crt
     networks:
       home-kuma:
-      lan:
+      SDB1:
         ipv4_address: ${ip_address}
     environment:
       - NODE_EXTRA_CA_CERTS=/certs/root_ca.crt
@@ -17,5 +17,5 @@ services:
 networks:
   home-kuma:
     external: true
-  lan:
+  SDB1:
     external: true
