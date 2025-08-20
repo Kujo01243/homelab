@@ -8,6 +8,7 @@ services:
       - ${letsencrypt_path}:/etc/letsencrypt
     networks:
       vaultwarden:
+      home-kuma:
       speedtest:
       netbox:
       usenet:
