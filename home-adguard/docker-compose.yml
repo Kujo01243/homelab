@@ -8,9 +8,9 @@ services:
       - ${adguardhome_conf_path}:/opt/adguardhome/conf
       - ${cert_path}:/cert
     networks:
-      SDB1:
+      lan:
         ipv4_address: ${ip_address}
 
 networks:
-  SDB1:
+  lan:
     external: true
