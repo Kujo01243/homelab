@@ -33,6 +33,9 @@ services:
       - PAPERLESS_SOCIALACCOUNT_PROVIDERS={"openid_connect":{"APPS":[{"provider_id":"authentik","name":"trust.theil.dev","client_id":"${client_id}","secret":"${client_secret}","settings":{"server_url":"${server_url}","claims":{"username":"email"}}}],"OAUTH_PKCE_ENABLED":true}}
       - PAPERLESS_AUTO_LOGIN=true
       - PAPERLESS_AUTO_CREATE=true
+      - PAPERLESS_APP_TITLE=${PAPERLESS_APP_TITLE}
+      - PAPERLESS_ENABLE_UPDATE_CHECK=${PAPERLESS_ENABLE_UPDATE_CHECK}
+      - PAPERLESS_TIME_ZONE=${PAPERLESS_TIME_ZONE}
   gotenberg:
     image: docker.io/gotenberg/gotenberg:8.22
     restart: unless-stopped
