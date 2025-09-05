@@ -1,4 +1,6 @@
 services:
+  environment:
+    PAPERLESS_URL: ${PAPERLESS_URL}
   broker:
     image: docker.io/library/redis:8
     restart: unless-stopped
