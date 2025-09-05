@@ -28,7 +28,7 @@ services:
       PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://gotenberg:3000
       PAPERLESS_TIKA_ENDPOINT: http://tika:9998
       PAPERLESS_URL: ${PAPERLESS_URL}
-      PAPERLESS_ENABLE_ALLAUTH: "true"
+      PAPERLESS_ENABLE_ALLAUTH=true
       PAPERLESS_APPS: allauth.socialaccount.providers.openid_connect
       PAPERLESS_SOCIALACCOUNT_PROVIDERS: >
           {
@@ -45,11 +45,11 @@ services:
                   }
                 }
               ],
-              "OAUTH_PKCE_ENABLED": "True"
+              "OAUTH_PKCE_ENABLED"=true
             }
           }
-      PAPERLESS_AUTO_LOGIN: "true"
-      PAPERLESS_AUTO_CREATE: "true"
+      PAPERLESS_AUTO_LOGIN=true
+      PAPERLESS_AUTO_CREATE=true
   gotenberg:
     image: docker.io/gotenberg/gotenberg:8.22
     restart: unless-stopped
