@@ -40,7 +40,7 @@ services:
                   "client_id": "${client_id}",
                   "secret": "${client_secret}",
                   "settings": {
-                    "server_url": ${server_url}
+                    "server_url": ${server_url},
                     "claims": {"username": "email"}
                   }
                 }
