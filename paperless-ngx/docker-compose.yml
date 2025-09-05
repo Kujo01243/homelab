@@ -23,33 +23,16 @@ services:
     networks:
       - paperless-ngx
     environment:
-      PAPERLESS_REDIS: redis://broker:6379
-      PAPERLESS_TIKA_ENABLED: 1
-      PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://gotenberg:3000
-      PAPERLESS_TIKA_ENDPOINT: http://tika:9998
-      PAPERLESS_URL: ${PAPERLESS_URL}
-      PAPERLESS_ENABLE_ALLAUTH=true
-      PAPERLESS_APPS: allauth.socialaccount.providers.openid_connect
-      PAPERLESS_SOCIALACCOUNT_PROVIDERS: >
-          {
-            "openid_connect": {
-              "APPS": [
-                {
-                  "provider_id": "authentik",
-                  "name": "authentik",
-                  "client_id": "${client_id}",
-                  "secret": "${client_secret}",
-                  "settings": {
-                    "server_url": "${server_url}""
-                    "claims": {"username": "email"}
-                  }
-                }
-              ],
-              "OAUTH_PKCE_ENABLED"=true
-            }
-          }
-      PAPERLESS_AUTO_LOGIN=true
-      PAPERLESS_AUTO_CREATE=true
+      - PAPERLESS_REDIS=redis://broker:6379
+      - PAPERLESS_TIKA_ENABLED=1
+      - PAPERLESS_TIKA_GOTENBERG_ENDPOINT=http://gotenberg:3000
+      - PAPERLESS_TIKA_ENDPOINT=ttp://tika:9998
+      - PAPERLESS_URL=${PAPERLESS_URL}
+      - PAPERLESS_ENABLE_ALLAUTH=true
+      - PAPERLESS_APPS=allauth.socialaccount.providers.openid_connect
+      - PAPERLESS_SOCIALACCOUNT_PROVIDERS={"openid_connect":{"APPS":[{"provider_id":"authentik","name":"authentik","client_id":"${client_id}","secret":"${client_secret}","settings":{"server_url":"${server_url}","claims":{"username":"email"}}}],"OAUTH_PKCE_ENABLED":true}}
+      - PAPERLESS_AUTO_LOGIN=true
+      - PAPERLESS_AUTO_CREATE=true
   gotenberg:
     image: docker.io/gotenberg/gotenberg:8.22
     restart: unless-stopped
