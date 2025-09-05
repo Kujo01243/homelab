@@ -1,6 +1,4 @@
 services:
-  environment:
-    PAPERLESS_URL: ${PAPERLESS_URL}
   broker:
     image: docker.io/library/redis:8
     restart: unless-stopped
@@ -8,6 +6,8 @@ services:
       - /root/paperless-ngx/redisdata:/data
     networks:
       - paperless-ngx
+    environment:
+      PAPERLESS_URL: ${PAPERLESS_URL}
   paperless-ngx-webserver:
     image: ghcr.io/paperless-ngx/paperless-ngx:latest
     restart: unless-stopped
@@ -27,6 +27,7 @@ services:
       PAPERLESS_TIKA_ENABLED: 1
       PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://gotenberg:3000
       PAPERLESS_TIKA_ENDPOINT: http://tika:9998
+      PAPERLESS_URL: ${PAPERLESS_URL}
   gotenberg:
     image: docker.io/gotenberg/gotenberg:8.22
     restart: unless-stopped
@@ -38,11 +39,15 @@ services:
       - "--chromium-allow-list=file:///tmp/.*"
     networks:
       - paperless-ngx
+    environment:
+      PAPERLESS_URL: ${PAPERLESS_URL}
   tika:
     image: docker.io/apache/tika:latest
     restart: unless-stopped
     networks:
       - paperless-ngx
+    environment:
+      PAPERLESS_URL: ${PAPERLESS_URL}
 
 networks:
   paperless-ngx:
