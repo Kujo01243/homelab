@@ -13,10 +13,14 @@ services:
       - GENERIC_TIMEZONE=${TIMEZONE}
       - TZ=${TIMEZONE}
     volumes:
-      - /root/n8n/home/node:/home/node/.n8n
-      - /root/n8n/files:/files
+      - n8n_data:/home/node/.n8n
+      - local_files:/files
     networks:
      - n8n
+
+volumes:
+  n8n_data:
+  local_files:
 
 networks:
   n8n:
