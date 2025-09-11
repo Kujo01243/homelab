@@ -10,7 +10,7 @@ services:
       - N8N_RUNNERS_ENABLED=true
       - NODE_ENV=production
       - WEBHOOK_URL=https://${DOMAIN_NAME}/
-      - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
+      - GENERIC_TIMEZONE=${TIMEZONE}
       - TZ=${TIMEZONE}
     volumes:
       - /root/n8n/home/node:/home/node/.n8n
