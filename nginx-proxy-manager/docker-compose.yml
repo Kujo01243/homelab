@@ -13,6 +13,7 @@ services:
       speedtest:
       netbox:
       usenet:
+      n8n:
       SDB1:
         ipv4_address: ${ip_address}
 
@@ -30,4 +31,6 @@ networks:
   vaultwarden:
     external: true
   paperless-ngx:
+    external: true
+  n8n:
     external: true

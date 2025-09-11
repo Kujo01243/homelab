@@ -1,0 +1,23 @@
+services:
+   n8n:
+    image: docker.n8n.io/n8nio/n8n
+    restart: unless-stopped
+    environment:
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+      - N8N_HOST=${DOMAIN_NAME}
+      - N8N_PORT=443
+      - N8N_PROTOCOL=https
+      - N8N_RUNNERS_ENABLED=true
+      - NODE_ENV=production
+      - WEBHOOK_URL=https://${DOMAIN_NAME}/
+      - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
+      - TZ=${TIMEZONE}
+    volumes:
+      - /root/n8n/home/node:/home/node/.n8n
+      - /root/n8n/files:/files
+    networks:
+     - n8n
+
+networks:
+  n8n:
+    external: true
