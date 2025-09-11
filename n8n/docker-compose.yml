@@ -5,8 +5,8 @@ services:
     environment:
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
       - N8N_HOST=${DOMAIN_NAME}
-      - N8N_PORT=443
-      - N8N_PROTOCOL=https
+      - N8N_PORT=80
+      - N8N_PROTOCOL=http
       - N8N_RUNNERS_ENABLED=true
       - NODE_ENV=production
       - WEBHOOK_URL=https://${DOMAIN_NAME}/
