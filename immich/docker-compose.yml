@@ -58,9 +58,6 @@ services:
     networks:
       - immich
 
-volumes:
-  model-cache:
-
 networks:
   immich:
     external: true
