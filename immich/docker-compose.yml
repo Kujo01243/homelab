@@ -22,8 +22,8 @@ services:
     restart: unless-stopped
     healthcheck:
       disable: false
-    networks:
-      - immich
+    ports:
+          - "2283:2283"
 
   immich-machine-learning:
     container_name: immich_machine_learning
@@ -38,8 +38,7 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       DB_USERNAME: ${DB_USERNAME}
       DB_DATABASE_NAME: ${DB_DATABASE_NAME}
-    networks:
-      - immich
+
 
   redis:
     container_name: immich_redis
@@ -52,8 +51,7 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       DB_USERNAME: ${DB_USERNAME}
       DB_DATABASE_NAME: ${DB_DATABASE_NAME}
-    networks:
-      - immich
+
 
   database:
     container_name: immich_postgres
@@ -71,9 +69,4 @@ services:
       - ${DB_DATA_LOCATION}:/var/lib/postgresql/data
     shm_size: 128mb
     restart: unless-stopped
-    networks:
-      - immich
 
-networks:
-  immich:
-    external: true
