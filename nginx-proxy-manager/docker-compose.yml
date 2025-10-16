@@ -16,6 +16,8 @@ services:
       n8n:
       SDB1:
         ipv4_address: ${ip_address}
+      p2p1:
+        ipv4_address: ${ip_address_p2p1}
 
 networks:
   usenet:
@@ -34,4 +36,5 @@ networks:
     external: true
   n8n:
     external: true
-
+  p2p1:
+    external: true
