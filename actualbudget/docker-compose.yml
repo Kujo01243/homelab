@@ -1,5 +1,5 @@
 services:
-  actual_server:
+  actualbudget:
     image: docker.io/actualbudget/actual-server:latest
     volumes:
       - /root/actualbudget:/data
