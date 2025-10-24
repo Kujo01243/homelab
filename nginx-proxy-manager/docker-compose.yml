@@ -14,7 +14,6 @@ services:
       netbox:
       usenet:
       n8n:
-      actualbudget:
       SDB1:
         ipv4_address: ${ip_address}
       p2p1:
@@ -39,5 +38,4 @@ networks:
     external: true
   p2p1:
     external: true
-  actualbudget:
-    external: true
+
