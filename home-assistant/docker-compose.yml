@@ -3,7 +3,7 @@ services:
     container_name: home-assistant
     image: "ghcr.io/home-assistant/home-assistant:stable"
     volumes:
-      - /root/config:/config
+      - /root/home-assistant/config:/config
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro
     restart: unless-stopped
