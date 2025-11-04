@@ -1,6 +1,6 @@
 services:
   homeassistant:
-    container_name: homeassistant
+    container_name: homea-ssistant
     image: "ghcr.io/home-assistant/home-assistant:stable"
     volumes:
       - /root/config:/config
