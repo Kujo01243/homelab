@@ -1,5 +1,6 @@
 *.env
 hosts.ini
+*hosts.ini
 id_rsa
 id_rsa.pub
 .vscode/*
