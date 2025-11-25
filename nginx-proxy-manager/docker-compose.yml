@@ -13,6 +13,7 @@ services:
       speedtest:
       netbox:
       usenet:
+      stirling-pdf:
       n8n:
       SDB1:
         ipv4_address: ${ip_address}
@@ -37,5 +38,7 @@ networks:
   n8n:
     external: true
   p2p1:
+    external: true
+  stirling-pdf:
     external: true
 
