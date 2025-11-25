@@ -10,3 +10,9 @@ services:
     environment:
       - DISABLE_ADDITIONAL_FEATURES=false
       - LANGS=en_GB
+    networks:
+     - stirling-pdf
+
+networks:
+  stirling-pdf:
+    external: true
