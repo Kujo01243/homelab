@@ -1,0 +1,13 @@
+services:
+  beszel:
+    image: henrygd/beszel
+    container_name: beszel
+    restart: unless-stopped
+    volumes:
+      - /root/beszel:/beszel_data
+    networks:
+      - beszel
+
+networks:
+  beszel:
+    external: true
