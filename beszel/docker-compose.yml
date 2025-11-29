@@ -8,7 +8,7 @@ services:
     networks:
       - beszel
     environment:
-      USER_CREATION: ${USER_CREATION}
+      USER_CREATION: true
 
 networks:
   beszel:
