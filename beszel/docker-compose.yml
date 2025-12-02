@@ -6,11 +6,15 @@ services:
     volumes:
       - /root/beszel:/beszel_data
     networks:
-      - beszel
+      beszel:
+      SDB1:
+        ipv4_address: ${ip_address}
     environment:
       USER_CREATION: true
       APP_URL: ${APP_URL}
 
 networks:
   beszel:
+    external: true
+  SDB1:
     external: true
