@@ -30,6 +30,7 @@ services:
     image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}
     volumes:
       - /root/immich/cache:/cache
+      - /root/external_libary:/root/external_libary
     restart: unless-stopped
     healthcheck:
       disable: false
