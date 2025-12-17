@@ -11,6 +11,7 @@ services:
       # Do not edit the next line. If you want to change the media storage location on your system, edit the value of UPLOAD_LOCATION in the .env file
       - ${UPLOAD_LOCATION}:/data
       - /etc/localtime:/etc/localtime:ro
+      - /root/external_libary:/root/external_libary
     environment:
       DB_PASSWORD: ${DB_PASSWORD}
       DB_USERNAME: ${DB_USERNAME}
@@ -30,7 +31,6 @@ services:
     image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}
     volumes:
       - /root/immich/cache:/cache
-      - /root/external_libary:/root/external_libary
     restart: unless-stopped
     healthcheck:
       disable: false
