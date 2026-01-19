@@ -41,3 +41,5 @@ networks:
     external: true
   beszel:
     external: true
+  tautulli:
+    external: true
