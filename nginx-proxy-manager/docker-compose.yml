@@ -14,6 +14,7 @@ services:
       netbox:
       usenet:
       n8n:
+      tautulli:
       beszel:
       SDB1:
         ipv4_address: ${ip_address}
