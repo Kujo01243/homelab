@@ -19,7 +19,6 @@ services:
     volumes:
       - /root/minecraft1/data:/data
       - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
     networks:
       dmz:
         ipv4_address: ${ip_address}
