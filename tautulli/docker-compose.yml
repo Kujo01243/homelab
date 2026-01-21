@@ -1,0 +1,17 @@
+services:
+  tautulli:
+    image: ghcr.io/tautulli/tautulli
+    container_name: tautulli
+    restart: unless-stopped
+    volumes:
+      - /root/tautulli/config:/config
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Europe/Zurich
+    networks:
+       - tautulli
+
+networks:
+  tautulli:
+    external: true

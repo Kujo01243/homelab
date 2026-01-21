@@ -14,6 +14,7 @@ services:
       netbox:
       usenet:
       n8n:
+      tautulli:
       beszel:
       SDB1:
         ipv4_address: ${ip_address}
@@ -40,4 +41,6 @@ networks:
   p2p1:
     external: true
   beszel:
+    external: true
+  tautulli:
     external: true

@@ -14,7 +14,6 @@ services:
      - DB_PASSWORD=${port_DB_PASSWORD}
      - DB_USER=${port_DB_USER}
      - GRAPHQL_ENABLED=${port_GRAPHQL_ENABLED}
-     - HOUSEKEEPING_INTERVAL=${port_HOUSEKEEPING_INTERVAL}
      - MEDIA_ROOT=${port_MEDIA_ROOT}
      - METRICS_ENABLED=${port_METRICS_ENABLED}
      - REDIS_CACHE_DATABASE=${port_REDIS_CACHE_DATABASE}
@@ -70,7 +69,7 @@ services:
   # postgres
   postgres:
     restart: unless-stopped       #because crash after every system reboot
-    image: docker.io/postgres:16-alpine
+    image: docker.io/postgres:16-alpine  # Wenn hier geupdatet werden soll, dann muss zuerst ein Dump gemacht werden und dieser dann wieder eingespielt werden.
     healthcheck:
       test: pg_isready -q -t 2 -d $$POSTGRES_DB -U $$POSTGRES_USER
       start_period: 20s
