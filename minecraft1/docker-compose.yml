@@ -15,6 +15,8 @@ services:
       ENABLE_WHITELIST: "${enable_whitelist}"
       WHITELIST: "${whitelist}" # Comma-separated list of usernames
       MOTD: ${motd}
+      LEVEL: "${level_name}"
+      ICON: "${icon_url}"
 
     volumes:
       - /root/minecraft1/data:/data
