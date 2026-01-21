@@ -1,0 +1,19 @@
+services:
+  mc:
+    image: itzg/minecraft-server:latest
+    pull_policy: daily
+    tty: true
+    stdin_open: true
+    ports:
+      - "25565:25565"
+    environment:
+      EULA: "TRUE"
+    volumes:
+      - /root/minecraft1/data:/data
+    networks:
+      dmz:
+        ipv4_address: ${ip_address}
+
+networks:
+  dmz:
+    external: true
