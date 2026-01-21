@@ -17,7 +17,7 @@ services:
       MOTD: ${motd}
       LEVEL: "${level_name}"
       ICON: "${icon_url}"
-      MAX_MEMORY: ${max_memory}
+      MAX_MEMORY: "${max_memory}"
 
     volumes:
       - /root/minecraft1/data:/data
