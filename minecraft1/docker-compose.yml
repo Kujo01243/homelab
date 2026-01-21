@@ -1,6 +1,7 @@
 services:
-  mc:
+  minecraft1:
     image: itzg/minecraft-server:latest
+    container_name: minecraft1
     pull_policy: daily
     tty: true
     stdin_open: true
