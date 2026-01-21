@@ -11,7 +11,6 @@ services:
     environment:
       EULA: "TRUE"
       DIFFICULTY: "${difficulty}"
-      MODE: "${mode}"
       ENABLE_WHITELIST: "${enable_whitelist}"
       WHITELIST: "${whitelist}" # Comma-separated list of usernames
       MOTD: ${motd}
