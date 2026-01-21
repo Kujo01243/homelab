@@ -10,10 +10,10 @@ services:
       - "25565:25565"
     environment:
       EULA: "TRUE"
-      DIFFICULTY: ${difficulty}
-      MODE: ${mode}
-      ENABLE_WHITELIST: ${enable_whitelist}
-      WHITELIST: ${whitelist} # Comma-separated list of usernames
+      DIFFICULTY: "${difficulty}"
+      MODE: "${mode}"
+      ENABLE_WHITELIST: "${enable_whitelist}"
+      WHITELIST: "${whitelist}" # Comma-separated list of usernames
       MOTD: ${motd}
 
     volumes:
