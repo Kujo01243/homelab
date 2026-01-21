@@ -18,6 +18,7 @@ services:
       LEVEL: "${level_name}"
       ICON: "${icon_url}"
       MAX_MEMORY: "${max_memory}"
+      OVERRIDE_ICON: "TRUE"
 
     volumes:
       - /root/minecraft1/data:/data
