@@ -6,7 +6,7 @@ services:
       - ${data_path}:/app/data
     ports:
       - ${web_port}:3001
-    restart: always
+    restart: unless-stopped
     networks:
       dmz:
         ipv4_address: ${ip_address}

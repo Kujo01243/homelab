@@ -3,14 +3,23 @@ services:
     image: itzg/minecraft-server:latest
     container_name: minecraft1
     pull_policy: daily
+    restart: unless-stopped
     tty: true
     stdin_open: true
     ports:
       - "25565:25565"
     environment:
       EULA: "TRUE"
+      DIFFICULTY: ${difficulty}
+      MODE: ${mode}
+      ENABLE_WHITELIST: ${enable_whitelist}
+      WHITELIST: ${whitelist} # Comma-separated list of usernames
+      MOTD: ${motd}
+
     volumes:
       - /root/minecraft1/data:/data
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
     networks:
       dmz:
         ipv4_address: ${ip_address}
