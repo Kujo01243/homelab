@@ -80,7 +80,6 @@ services:
       retries: 10
     volumes:
       - netbox-postgres:/var/lib/postgresql
-      - /root/netboxtransfer:/transfer
     environment:
       - POSTGRES_DB=${port_PG_POSTGRES_DB}
       - POSTGRES_PASSWORD=${port_PG_POSTGRES_PASSWORD}
