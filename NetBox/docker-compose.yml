@@ -69,7 +69,7 @@ services:
       interval: 15s
 
   # postgres
-  postgres:
+  postgres2:
     restart: unless-stopped       #because crash after every system reboot
     image: docker.io/postgres:16-alpine  # Wenn hier geupdatet werden soll, dann muss zuerst ein Dump gemacht werden und dieser dann wieder eingespielt werden.
     healthcheck:
@@ -88,7 +88,7 @@ services:
     networks:
      - netbox
 
-  postgres2:
+  postgres:
     restart: unless-stopped       #because crash after every system reboot
     image: docker.io/postgres:18-alpine  # Wenn hier geupdatet werden soll, dann muss zuerst ein Dump gemacht werden und dieser dann wieder eingespielt werden.
     healthcheck:
