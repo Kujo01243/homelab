@@ -148,6 +148,8 @@ volumes:
     driver: local
   netbox-postgres-data:
     driver: local
+  netbox-postgres:
+    driver: local
   netbox-redis-cache-data:
     driver: local
   netbox-redis-data:
