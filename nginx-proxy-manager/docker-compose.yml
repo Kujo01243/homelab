@@ -10,7 +10,6 @@ services:
       vaultwarden:
       paperless-ngx:
       home-kuma:
-      speedtest:
       netbox:
       usenet:
       n8n:
@@ -29,8 +28,6 @@ networks:
   SDB1:
     external: true
   netbox:
-    external: true
-  speedtest:
     external: true
   vaultwarden:
     external: true
