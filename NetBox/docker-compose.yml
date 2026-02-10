@@ -88,7 +88,7 @@ services:
   # redis
   redis:
     restart: unless-stopped       #because crash after every system reboot
-    image: docker.io/valkey/valkey:8.1-alpine
+    image: docker.io/valkey/valkey:9.0-alpine
     command:
       - sh
       - -c # this is to evaluate the $REDIS_PASSWORD from the env
@@ -108,7 +108,7 @@ services:
 
   redis-cache:
     restart: unless-stopped       #because crash after every system reboot
-    image: docker.io/valkey/valkey:8.1-alpine
+    image: docker.io/valkey/valkey:9.0-alpine
     command:
       - sh
       - -c # this is to evaluate the $REDIS_PASSWORD from the env
