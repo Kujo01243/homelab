@@ -37,6 +37,8 @@ services:
      - SOCIAL_AUTH_OIDC_SECRET=${port_SOCIAL_AUTH_OIDC_SECRET}
      - SOCIAL_AUTH_OIDC_SCOPE=${port_SOCIAL_AUTH_OIDC_SCOPE}
      - LOGOUT_REDIRECT_URL=${port_LOGOUT_REDIRECT_URL}
+     - GRANIAN_BACKPRESSURE=${port_GRANIAN_BACKPRESSURE}
+     - GRANIAN_WORKERS=${port_GRANIAN_WORKERS}
     user: "netbox:root"
     healthcheck:
       test: curl -f http://localhost:8080/login/ || exit 1
