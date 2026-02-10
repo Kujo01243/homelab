@@ -78,7 +78,7 @@ services:
       retries: 10
     volumes:
       - netbox-postgres-data:/test
-      - netbox-postgres:/var/lib/postgresql/
+      - netbox-postgres:/var/lib/postgresql
     environment:
       - POSTGRES_DB=${port_PG_POSTGRES_DB}
       - POSTGRES_PASSWORD=${port_PG_POSTGRES_PASSWORD}
