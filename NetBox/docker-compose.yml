@@ -77,8 +77,7 @@ services:
       interval: 10s
       retries: 10
     volumes:
-      - netbox-postgres-data:/test
-      - netbox-postgres:/var/lib/postgresql/
+      - netbox-postgres-data:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=${port_PG_POSTGRES_DB}
       - POSTGRES_PASSWORD=${port_PG_POSTGRES_PASSWORD}
@@ -126,8 +125,6 @@ volumes:
   netbox-media-files:
     driver: local
   netbox-postgres-data:
-    driver: local
-  netbox-postgres:
     driver: local
   netbox-redis-cache-data:
     driver: local
