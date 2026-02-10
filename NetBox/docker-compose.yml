@@ -69,25 +69,6 @@ services:
       interval: 15s
 
   # postgres
-  postgres2:
-    restart: unless-stopped       #because crash after every system reboot
-    image: docker.io/postgres:16-alpine  # Wenn hier geupdatet werden soll, dann muss zuerst ein Dump gemacht werden und dieser dann wieder eingespielt werden.
-    healthcheck:
-      test: pg_isready -q -t 2 -d $$POSTGRES_DB -U $$POSTGRES_USER
-      start_period: 20s
-      timeout: 45s
-      interval: 10s
-      retries: 10
-    volumes:
-      - netbox-postgres-data:/var/lib/postgresql/data
-      - /root/netboxtransfer:/transfer
-    environment:
-      - POSTGRES_DB=${port_PG_POSTGRES_DB}
-      - POSTGRES_PASSWORD=${port_PG_POSTGRES_PASSWORD}
-      - POSTGRES_USER=${port_PG_POSTGRES_USER}
-    networks:
-     - netbox
-
   postgres:
     restart: unless-stopped       #because crash after every system reboot
     image: docker.io/postgres:18-alpine  # Wenn hier geupdatet werden soll, dann muss zuerst ein Dump gemacht werden und dieser dann wieder eingespielt werden.
