@@ -15,6 +15,7 @@ services:
       n8n:
       tautulli:
       beszel:
+      lab:
       SDB1:
         ipv4_address: ${ip_address}
       p2p1:
