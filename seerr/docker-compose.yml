@@ -1,6 +1,6 @@
 services:
   seerr:
-    image: lghcr.io/seerr-team/seerr:${tag}
+    image: ghcr.io/seerr-team/seerr:${tag}
     container_name: seerr
     volumes:
       - ${data_path}:/app/config
