@@ -25,6 +25,7 @@ services:
     ports:
           - "2283:2283"
 
+
   immich-machine-learning:
     container_name: immich_machine_learning
     image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}
@@ -69,4 +70,3 @@ services:
       - ${DB_DATA_LOCATION}:/var/lib/postgresql/data
     shm_size: 128mb
     restart: unless-stopped
-
