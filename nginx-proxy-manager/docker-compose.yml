@@ -20,6 +20,8 @@ services:
         ipv4_address: ${ip_address}
       p2p1:
         ipv4_address: ${ip_address_p2p1}
+      p2p2:
+        ipv4_address: ${ip_address_p2p2}
 
 networks:
   usenet:
@@ -43,4 +45,6 @@ networks:
   tautulli:
     external: true
   lab:
+    external: true
+  p2p2:
     external: true
