@@ -37,6 +37,7 @@ services:
 
 volumes:
   nextcloud_aio_mastercontainer:
+    name: nextcloud_aio_mastercontainer
     driver: local
     driver_opts:
       type: none
