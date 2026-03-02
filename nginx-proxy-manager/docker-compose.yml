@@ -16,6 +16,7 @@ services:
       tautulli:
       beszel:
       lab:
+      nextcloud:
       SDB1:
         ipv4_address: ${ip_address}
       p2p1:
@@ -43,4 +44,6 @@ networks:
   tautulli:
     external: true
   lab:
+    external: true
+  nextcloud:
     external: true
