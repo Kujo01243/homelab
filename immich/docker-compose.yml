@@ -20,7 +20,7 @@ services:
     ports:
           - "2283:2283"
     env_file:
-      - stack.env
+      - ./stack.env
 
 
   immich-machine-learning:
