@@ -1,0 +1,36 @@
+services:
+  mealie:
+    image: ghcr.io/mealie-recipes/mealie:v3.14.0 # 
+    container_name: mealie
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 1000M # 
+    volumes:
+      - /root/mealie/:/app/data/
+    environment:
+      # Set Backend ENV Variables Here
+      ALLOW_SIGNUP: "false"
+      TZ: ${TZ}
+      BASE_URL: ${BASE_URL}
+      TOKEN_TIME: ${TOKEN_TIME}
+      ALLOW_PASSWORD_LOGIN: ${ALLOW_PASSWORD_LOGIN}
+      SECURITY_MAX_LOGIN_ATTEMPTS: ${SECURITY_MAX_LOGIN_ATTEMPTS}
+      SECURITY_USER_LOCKOUT_TIME: ${SECURITY_USER_LOCKOUT_TIME}
+      OIDC_AUTH_ENABLED: ${OIDC_AUTH_ENABLED}
+      OIDC_SIGNUP_ENABLED: ${OIDC_SIGNUP_ENABLED}
+      OIDC_CONFIGURATION_URL: ${OIDC_CONFIGURATION_URL}
+      OIDC_CLIENT_ID: ${OIDC_CLIENT_ID}
+      OIDC_CLIENT_SECRET: ${OIDC_CLIENT_SECRET}
+      OIDC_ADMIN_GROUP: ${OIDC_ADMIN_GROUP}
+      OIDC_AUTO_REDIRECT: ${OIDC_AUTO_REDIRECT}
+      OIDC_PROVIDER_NAME: ${OIDC_PROVIDER_NAME}
+      OIDC_REMEMBER_ME: ${OIDC_REMEMBER_ME}
+    networks:
+      dmz:
+        ipv4_address: ${ip_address}
+
+networks:
+  dmz:
+    external: true
