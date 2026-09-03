@@ -43,6 +43,7 @@ services:
       - PAPERLESS_EMAIL_HOST_USER=${PAPERLESS_EMAIL_HOST_USER}
       - PAPERLESS_EMAIL_HOST_PASSWORD=${PAPERLESS_EMAIL_HOST_PASSWORD}
       - PAPERLESS_EMAIL_USE_TLS=${PAPERLESS_EMAIL_USE_TLS}
+      - PAPERLESS_SECRET_KEY=${PAPERLESS_SECRET_KEY}
   gotenberg:
     image: docker.io/gotenberg/gotenberg:8.22
     restart: unless-stopped
