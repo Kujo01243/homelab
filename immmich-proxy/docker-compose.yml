@@ -1,0 +1,20 @@
+# Prepared but not used
+
+services:
+  immich-public-proxy:
+    image: ghcr.io/alangrainger/immich-public-proxy:latest
+    container_name: immich-public-proxy
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - IMMICH_URL=${IMMICH_URL}
+      - PUBLIC_BASE_URL=${PUBLIC_BASE_URL}
+    networks:
+      SDB1:
+        ipv4_address: ${ip_address}
+
+
+networks:
+  SDB1:
+    external: true
