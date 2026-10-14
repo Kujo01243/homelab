@@ -119,7 +119,7 @@ services:
     volumes:
       - netbox-redis-cache-data:/data
     environment:
-      - REDIS_PASSWORD=${port_REDC_REDIS_PASSOWORD}
+      - REDIS_PASSWORD=${port_REDC_REDIS_PASSWORD}
     networks:
      - netbox
 
