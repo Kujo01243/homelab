@@ -6,6 +6,7 @@ services:
     volumes:
       - ${data_path}:/app/data
       - ${ca_path}:/certs/root_ca.crt
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       home-kuma:
       SDB1:
