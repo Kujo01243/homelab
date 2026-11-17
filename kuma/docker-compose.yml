@@ -4,6 +4,7 @@ services:
     container_name: kuma
     volumes:
       - ${data_path}:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     ports:
       - ${web_port}:3001
     restart: unless-stopped
