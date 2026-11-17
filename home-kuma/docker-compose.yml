@@ -13,7 +13,7 @@ services:
         ipv4_address: ${ip_address}
     environment:
       - NODE_EXTRA_CA_CERTS=/certs/root_ca.crt
-      - UPTIME_KUMA_DISABLE_AUTH=0
+      - UPTIME_KUMA_DISABLE_AUTH=1
 
 
 networks:
